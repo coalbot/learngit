@@ -3,9 +3,6 @@
 
 import os,shutil,re,string,sys,shutil,win32com.client 
 
-
-#os.system("pause")
-
 def mkdir(path):#新建文件夹
 	folder = os.path.exists(path)
 	if not folder:
@@ -20,7 +17,6 @@ def re_fine(run_file_name,pattern):#正则匹配
                 if pattern.findall(run_file_name[index]):
                         return(run_file_name[index])
 
-
 #读取软件所在位置
 current_path = os.getcwd()
 #判断软件所在位置是否正确
@@ -28,12 +24,10 @@ A = input("当前目录是： " + current_path + " 吗？\n[y/n]")#
 if A == "n":
     current_path = input("请输入类似 " + current_path + "的地址。\n")
 
-
 #######################################################################################
 #初始化
 Set_path = current_path + "\\" + r"Set"
 mkdir(Set_path)
-
 
 print("把需要要编译的文件放入Set文件夹内\nPut the files you need to compile into the Set folder")#
 os.system("pause")
@@ -61,7 +55,6 @@ B = input("pyinstaller的安装目录是: " + pyinstaller_path + " 吗？\n[y/n]
 if B == "n":
         pyinstaller_path = input("请输入类似 " + pyinstaller_path + "的地址。\n")
 
-
 #######################################################################################
 #读取待添加文件所在位置的文件
 test_file_name = PP_file_name(Set_path)
@@ -71,15 +64,12 @@ test_file_name = re_fine(test_file_name,pattern)
 if not test_file_name:
     test_file_name = "Demo.py"
 
-        
 #选择待添加文件的文件名
 C = input("你想要编译的软件名是： " + test_file_name + " 吗？\n[y/n]")
 if C == "n":
     test_file_name = input("请输入类似 " + test_file_name + "的名字。\n")
     
-
 test_file_name = ''.join(re.split('.py',test_file_name))
-
 
 #######################################################################################
 #询问是否改变图标
@@ -103,10 +93,7 @@ else:
         os.system("pause")
     ico_flag = 1
     
-    
-    
 #######################################################################################
-
 
 #确定生成文件位置
 save_path = current_path + "\\" + test_file_name
@@ -139,7 +126,7 @@ if os.path.exists(save_path):
         Compile_flag = 1
 else:
     Compile_flag = 1
-    
+
 #######################################################################################
 
 #判断待添加图标位置是否存在待添加图标 
@@ -170,9 +157,6 @@ while (ico_flag == 1):
             ico_flag = 0
             break
 
-
-
-
 #######################################################################################
 
 if Compile_flag:
@@ -189,11 +173,3 @@ if Compile_flag:
     shutil.move(current_path + "\\" + test_file_name + r".spec",save_path)
     print("编译成功啦!!!，软件放在" + test_file_name + "文件夹下的dist文件夹里，请查收。")
     os.system("pause")
-
-
-
-
-
-
-
-
